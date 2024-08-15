@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <h1>Weather Forecast</h1>
+    <form action="/" method="post">
+      <input type="text" name="city" placeholder="Enter a city" required />
+      <button type="submit">Get Weather</button>
+    </form>
+
+    <% if(weather !== null){ %>
+    <h2>Weather in <%= weather.name %></h2>
+    <p>Temperature: <%= weather.main.temp %>°C</p>
+    <p>Description: <%= weather.weather[0].description %></p>
+    <% } %> <% if(error !== null){ %>
+    <p><%= error %></p>
+    <% } %>
+  </body>
+</html>

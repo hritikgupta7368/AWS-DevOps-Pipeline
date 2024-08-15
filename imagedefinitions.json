@@ -1,0 +1,6 @@
+[
+  {
+    "name": "aws-devops-demo-container",
+    "imageUri": "%REPOSITORY_URI%:latest"
+  }
+]
