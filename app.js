@@ -38,6 +38,18 @@ app.get("/weather/:city", async (req, res) => {
   }
 });
 
+app.get("/forecast/:city", async (req, res) => {
+  const city = req.params.city;
+  const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`;
+
+  try {
+    const response = await axios.get(url);
+    const forecast = response.data;
+    res.json({ forecast });
+  } catch (error) {
+    res.status(500).json({ error: "Error, please try again" });
+  }
+});
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
