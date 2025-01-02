@@ -25,6 +25,19 @@ app.post("/", async (req, res) => {
   }
 });
 
+app.get("/weather/:city", async (req, res) => {
+  const city = req.params.city;
+  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
+
+  try {
+    const response = await axios.get(url);
+    const weather = response.data;
+    res.json({ weather });
+  } catch (error) {
+    res.status(500).json({ error: "Error, please try again" });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
