@@ -25,6 +25,18 @@ app.post("/", async (req, res) => {
   }
 });
 
+app.get("/air-quality/:city", async (req, res) => {
+  const city = req.params.city;
+  const url = `http://api.openweathermap.org/data/2.5/air_pollution?q=${city}&appid=${API_KEY}`;
+
+  try {
+    const response = await axios.get(url);
+    const airQuality = response.data;
+    res.json({ airQuality });
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching air quality data" });
+  }
+});
 app.get("/weather/:city", async (req, res) => {
   const city = req.params.city;
   const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
